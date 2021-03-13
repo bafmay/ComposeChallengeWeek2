@@ -1,13 +1,15 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId "com.example.androiddevchallenge"
+        applicationId "com.bafmay.challengeweek2"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
@@ -55,6 +57,11 @@ android {
         kotlinCompilerExtensionVersion compose_version
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     packagingOptions {
         // Multiple dependency bring these files in. Exclude them to enable
         // our test APK to build (has no effect on our AARs)
@@ -72,7 +79,15 @@ dependencies {
     implementation "androidx.compose.material:material:$compose_version"
     implementation "androidx.compose.material:material-icons-extended:$compose_version"
     implementation "androidx.compose.ui:ui-tooling:$compose_version"
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.0'
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.0-alpha03"
+    implementation "dev.chrisbanes.accompanist:accompanist-coil:$coil_version"
+    implementation "dev.chrisbanes.accompanist:accompanist-insets:$coil_version"
+    implementation "com.airbnb.android:lottie-compose:1.0.0-alpha07-SNAPSHOT"
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0'
+    implementation "com.google.dagger:hilt-android:2.31.2-alpha"
+    kapt "com.google.dagger:hilt-android-compiler:2.31-alpha"
 
     testImplementation 'junit:junit:4.13.2'
 
